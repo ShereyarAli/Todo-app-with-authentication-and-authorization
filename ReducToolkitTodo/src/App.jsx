@@ -10,7 +10,7 @@ import Signin from './components/Signin'
 import Signup from './components/Signup'
 import LoadingIndicator from './components/LoadingIndicator'
 import { useSelector } from 'react-redux'
-import { Toaster } from 'react-hot-toast'
+import { Toaster } from 'sonner'
 import { Home } from 'lucide'
 import HomePage from './components/HomePage'
 
@@ -20,6 +20,7 @@ function App() {
   return (
     <>
       {loading && <LoadingIndicator />}
+      <Toaster />
 
       <BrowserRouter>
         <Routes>

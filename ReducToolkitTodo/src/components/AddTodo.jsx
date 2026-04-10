@@ -6,6 +6,7 @@ import { nanoid } from "@reduxjs/toolkit"
 import Todos from "./Todos"
 import { useNavigate } from "react-router-dom"
 import Signup from "./Signup"
+import { toast } from "sonner"
 
 
 const AddTodo = () => {
@@ -55,7 +56,13 @@ const AddTodo = () => {
       }, jwtToken)
       const data = res
       console.log(data)
-      dispatch(addTodo(data))
+      if (data) {
+        dispatch(addTodo(data))
+        toast.success("Task added successfully")
+      }
+      else {
+        toast.error("Something went wrong")
+      }
       // updateDbGet() 
       setInput('')
     }
@@ -73,6 +80,10 @@ const AddTodo = () => {
       console.log(data)
       if (data) {
         dispatch(updateTodo({ input, id: editId }))
+        toast.success('Task updated successfully')
+      }
+      else {
+        toast.error('Something went wrong')
       }
       setInput('')
       dispatch(setEditMode({ mode: false }))
@@ -83,9 +94,10 @@ const AddTodo = () => {
     localStorage.removeItem('user_id');
     localStorage.removeItem('userRole');
     dispatch(clearItems())
+    toast.success("Logged out successfully")
     navigate('/login');
   };
-  let c = 0
+
   const adminTasks = async (task) => {
     dispatch(setAddUser(false))
     dispatch(setAdminTask(task))

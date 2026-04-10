@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addToDone, removeDoneTasks, clearItems, removeTodo, setEditMode, addTodo, setAdminTask } from '../features/todo/todoSlice'
 import { updateDbGet, updateDBPost } from '../../hook'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 const Todos = ({ jwtToken, adminTask }) => {
   const todos = useSelector(state => state.todos)
@@ -29,6 +30,7 @@ const Todos = ({ jwtToken, adminTask }) => {
 
   const clearAllItems = () => {
     dispatch(clearItems())
+    toast.success("All items cleared")
     dispatch(setEditMode({ mode: false }))
   }
   const handleDoneBtn = async (todo) => {
@@ -44,7 +46,11 @@ const Todos = ({ jwtToken, adminTask }) => {
     if (data) {
       dispatch(removeTodo(todo.id))
       dispatch(addToDone([todo]))
+      toast.success('Task marked as done')
       editMode && dispatch(setEditMode({ mode: !editMode }))
+    }
+    else {
+      toast.error('Something went wrong')
     }
   }
   const handleDel = async (id, type, task) => {
@@ -62,7 +68,11 @@ const Todos = ({ jwtToken, adminTask }) => {
       else {
         dispatch(removeTodo(id))
       }
+      toast.success(res.message)
       editMode && dispatch(setEditMode({ mode: !editMode }))
+    }
+    else {
+      toast.error(res.message)
     }
   }
   return (

@@ -30,10 +30,20 @@ const Signup = ({ addUser }) => {
         try {
             const res = await updateDBPost(formData)
             if (res.success) {
-
                 if (!addUser) {
                     navigate('/login');
                 }
+                toast.success(res.message)
+                setFormData({
+                    name: '',
+                    email: '',
+                    password: '',
+                    role: 'user',
+                    method: 'signup'
+                })
+            }
+            else {
+                toast.error(res.message)
             }
         } catch (error) {
             console.error('Signup error:', error);

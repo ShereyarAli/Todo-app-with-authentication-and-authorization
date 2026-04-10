@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { updateDBPost } from '../../hook';
 import { setAddUser } from '../features/todo/todoSlice';
 import { useDispatch } from 'react-redux';
+import { toast } from 'sonner';
 
 
 const Signin = () => {
@@ -30,11 +31,12 @@ const Signin = () => {
             dispatch(setAddUser(false))
             if (token) {
                 navigate('/todos');
+                toast.success(res.message)
                 console.log(token)
             }
         }
         else {
-            alert(res.message)
+            toast.error(res.message)
         }
     };
 
