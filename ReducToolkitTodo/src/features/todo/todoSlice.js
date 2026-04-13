@@ -8,7 +8,7 @@ const initialState = {
   loading: false,
   showDashboard: false,
   adminTask: 'tasks',
-  addUser: false
+  addUser: false,
 }
 
 //This slice will be shown in redux extension
@@ -60,9 +60,10 @@ export const todoSlice = createSlice({
     },
     setAddUser: (state, action) => {
       state.addUser = action.payload
-    }
+    },
+    
   }
 })
 // indiviual export is imp as they will be used in components
-export const { addTodo, removeTodo, removeDoneTasks, setEditMode, updateTodo, addToDone, clearItems, setLoading, setShowDashboard, setAdminTask, setAddUser } = todoSlice.actions
+export const { addTodo, removeTodo, removeDoneTasks, setEditMode, updateTodo, addToDone, clearItems, setLoading, setShowDashboard, setAdminTask, setAddUser,  } = todoSlice.actions
 export default todoSlice.reducer

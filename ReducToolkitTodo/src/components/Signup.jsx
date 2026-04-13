@@ -11,7 +11,7 @@ const Signup = ({ addUser }) => {
         email: '',
         password: '',
         role: 'user',
-        method: 'signup'
+        method: 'signup',
     });
     const navigate = useNavigate();
 
@@ -34,6 +34,7 @@ const Signup = ({ addUser }) => {
                     navigate('/login');
                 }
                 toast.success(res.message)
+                console.log(res)
                 setFormData({
                     name: '',
                     email: '',
@@ -133,7 +134,6 @@ const Signup = ({ addUser }) => {
                             </div>
                         </div>
                     )}
-
 
                     <button
                         type="submit"

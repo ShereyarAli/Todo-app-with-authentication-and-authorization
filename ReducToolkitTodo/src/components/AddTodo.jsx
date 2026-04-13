@@ -17,6 +17,7 @@ const AddTodo = () => {
   const addUser = useSelector(state => state.addUser)
   const todos = useSelector(state => state.todos)
   const doneTasks = useSelector(state => state.doneTasks)
+
   //dispatch uses reducers to change in store
   const [input, setInput] = useState('')
   const dispatch = useDispatch()
@@ -40,6 +41,7 @@ const AddTodo = () => {
       dispatch(setShowDashboard(false))
     }
   }, [jwtToken])
+
   const addTodoHandler = async (e) => {
     e.preventDefault()
     if (input) {
@@ -89,6 +91,7 @@ const AddTodo = () => {
       dispatch(setEditMode({ mode: false }))
     }
   }
+
   const handleLogout = () => {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('user_id');
@@ -105,11 +108,11 @@ const AddTodo = () => {
     console.log(todos, doneTasks)
   }
 
-
   const handleAddUser = () => {
     dispatch(setAddUser(true))
     dispatch(clearItems())
   }
+
   return (
     <div className="flex min-h-screen bg-black text-white">
       {/* sideBar */}
@@ -156,17 +159,7 @@ const AddTodo = () => {
           </button>
         </nav>
 
-        <div className="mt-auto pt-8 border-t border-zinc-800/50">
-          <div className="flex items-center gap-4 bg-zinc-900/80 p-4 rounded-2xl border border-zinc-800">
-            <div className="w-10 h-10 bg-gradient-to-br from-zinc-700 to-zinc-800 rounded-xl flex items-center justify-center font-black text-zinc-300">
-              A
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-bold truncate">Administrator</p>
-              <p className="text-[10px] text-zinc-500 uppercase tracking-widest">Global Auth</p>
-            </div>
-          </div>
-        </div>
+
       </aside>}
 
       {/* Main Content */}

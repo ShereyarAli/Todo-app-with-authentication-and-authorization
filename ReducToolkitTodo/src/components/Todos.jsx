@@ -28,10 +28,21 @@ const Todos = ({ jwtToken, adminTask }) => {
     }
   }, [jwtToken, adminTask])
 
-  const clearAllItems = () => {
-    dispatch(clearItems())
-    toast.success("All items cleared")
-    dispatch(setEditMode({ mode: false }))
+  const clearAllItems = async() => {
+    const res = await updateDBPost({
+      method: 'clear',
+      user_id: user_id,
+      userRole: userRole,
+    },jwtToken)
+    console.log(res)
+    if(res.success){
+      dispatch(clearItems())
+      toast.success(res.message)
+      dispatch(setEditMode({ mode: false }))
+    }
+    else{
+      toast.error(res.message)
+    }
   }
   const handleDoneBtn = async (todo) => {
     const res = await updateDBPost({

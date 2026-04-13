@@ -39,7 +39,6 @@ const Signin = () => {
             toast.error(res.message)
         }
     };
-
     return (
         <div className="flex items-center justify-center min-h-screen p-6">
             <div className="w-full max-w-md bg-zinc-900/60 backdrop-blur-2xl border border-zinc-800/80 rounded-[2.5rem] p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform transition-all duration-500 hover:shadow-[0_20px_70px_rgba(0,0,0,0.7)] animate-in fade-in zoom-in slide-in-from-bottom-10">
